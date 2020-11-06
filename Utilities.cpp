@@ -967,9 +967,18 @@ vector<dvec3> multiplyMatricesAndVertices(const vector<dmat3> &M, const vector<d
 * @return	The scaling matrix.
 */
 
+//1 0 x
+//0 1 y 
+//0 0 1
+
 dmat3 T(double dx, double dy) {
-	/* CSE 386 - todo  */
-	return dmat3();
+	
+	dmat3 matrix{1, 0, dx,
+				 0,	1, dy,
+				 0, 0, 1};
+	
+
+	return matrix;
 }
 
 /**
@@ -980,9 +989,15 @@ dmat3 T(double dx, double dy) {
  * @return	The scaling matrix.
  */
 
+ //x 0 0
+ //0 y 0
+ //0 0 1
+
 dmat3 S(double sx, double sy) {
-	/* CSE 386 - todo  */
-	return dmat3();
+	dmat3 matrix{sx, 0,  0,
+				 0,	 sy, 0,
+				 0,  0,  1 };
+	return matrix;
 }
 
 /**
@@ -992,9 +1007,17 @@ dmat3 S(double sx, double sy) {
  * @return	The rotation matrix.
  */
 
+ //cos(deg) -sin(deg) 0
+ //sin(deg)  cos(deg) 0 
+ //   0         0     1
+
 dmat3 R(double deg) {
-	/* CSE 386 - todo  */
-	return dmat3();
+	double cosDeg = glm::cos(deg);
+	double sinDeg = glm::sin(deg);
+	dmat3 matrix{ cosDeg, -(sinDeg),  0,
+				  sinDeg,   cosDeg,   0,
+				    0,        0,      1 };
+	return matrix;
 }
 
 /**
@@ -1093,8 +1116,9 @@ dmat3 rotateAroundOwnAxisAndAroundSun(double distFromOrigin,
 */
 
 dmat4 T(double dx, double dy, double dz) {
-	/* CSE 386 - todo  */
-	return dmat4();
+	dmat4 matrix = glm::translate(dvec3(dx, dy, dz));
+	return matrix;
+	// return dmat4();
 }
 
 /**
@@ -1107,8 +1131,8 @@ dmat4 T(double dx, double dy, double dz) {
 */
 
 dmat4 S(double sx, double sy, double sz) {
-	/* CSE 386 - todo  */
-	return dmat4();
+	dmat4 mat = glm::scale(dvec3(sx, sy, sz));
+	return mat;
 }
 
 /**
@@ -1119,8 +1143,8 @@ dmat4 S(double sx, double sy, double sz) {
 */
 
 dmat4 S(double scale) {
-	/* CSE 386 - todo  */
-	return dmat4();
+	dmat4 mat = glm::scale(dvec3(scale, scale, scale));
+	return mat;
 }
 
 /**
@@ -1131,8 +1155,8 @@ dmat4 S(double scale) {
 */
 
 dmat4 Rx(double rads) {
-	/* CSE 386 - todo  */
-	return dmat4();
+	dmat4 mat = glm::rotate(rads, dvec3(1, 0, 0));
+	return mat;
 }
 
 /**
@@ -1143,8 +1167,8 @@ dmat4 Rx(double rads) {
 */
 
 dmat4 Ry(double rads) {
-	/* CSE 386 - todo  */
-	return dmat4();
+	dmat4 mat = glm::rotate(rads, dvec3(0, 1, 0));
+	return mat;
 }
 
 /**
@@ -1155,8 +1179,8 @@ dmat4 Ry(double rads) {
 */
 
 dmat4 Rz(double rads) {
-	/* CSE 386 - todo  */
-	return dmat4();
+	dmat4 mat = glm::rotate(rads, dvec3(0, 0, 1));
+	return mat;
 }
 
 /**

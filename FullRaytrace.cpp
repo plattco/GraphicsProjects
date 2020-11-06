@@ -7,7 +7,7 @@
  * permission is granted..
  ****************************************************/
 
-
+/*
 #include <ctime>
 #include "Defs.h"
 #include "IShape.h"
@@ -249,4 +249,4 @@ void keyboard(unsigned char key, int x, int y) {
 
 	glutMainLoop();
 	return 0;
-}
+}*/
