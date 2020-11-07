@@ -67,6 +67,9 @@ EShapeData EShape::createESphere(const Material &mat, double R, int slices) {
 
 EShapeData EShape::createECylinder(const Material &mat, double R, double height, int slices) {
 	/* CSE 386 - todo  */
+	// similarly to the cone I need to loop through and build (planes? rectangles) one by one in different spots
+	// depending on the paramets until the correct cylinder is built.
+	// I need to move it to the right place by using rotation and transposition
 	EShapeData result;
 	dvec4 A(0, 0, 0, 1);
 	dvec4 B(1, 1, 1, 1);
@@ -87,11 +90,23 @@ EShapeData EShape::createECylinder(const Material &mat, double R, double height,
 
 EShapeData EShape::createECone(const Material &mat, double R, double height, int slices) {
 	/* CSE 386 - todo  */
+	// I need to somehow cycle through this in a way that builds a cone piece by piece. I think that I need to loop through and 
+	// create a triangle to tack onto the correct place for each iteration until it is built.
+	// I need to find out how and where to place the trangles, probably by using R and height.
+	// It seems that mat is taken care of since it is applied to the triangle. 
+	// Do I need to incorporate R and height into the dvecs below or into the actual building of the cone? probably the triangle.
+
 	EShapeData result;
 	dvec4 A(0, 0, 0, 1);
 	dvec4 B(1, 0, 0, 1);
 	dvec4 C(1, 1, 0, 1);
 	result = EShape::createETriangle(mat, A, B, C);
+	for(int i = 0; i < slices; i++){
+		// find the correct place to place a triangle
+		// make sure base of cone is centered on origin and axis is aligned with y
+		// I need to move it to the right place by using rotation and transposition
+		result = EShape::createETriangle(mat, A, B, C); // create triangle while changing the appropriate attributes.
+	}
 	return result;
 }
 
