@@ -76,7 +76,7 @@ EShapeData EShape::createECylinder(const Material &mat, double R, double height,
 	dvec4 C(1, 0, -1, 1);
 	result = EShape::createETriangle(mat, A, B, C);
 	return result;
-}
+} // I never quite found a way to exactly do this, I looked through slides and online examples but it never clicked for me
 
 /**
  * @fn	EShapeData EShape::createECone(const Material &mat, double R, double height, int slices)
@@ -88,7 +88,7 @@ EShapeData EShape::createECylinder(const Material &mat, double R, double height,
  * @return	The new cone.
  */
 
-EShapeData EShape::createECone(const Material &mat, double R, double height, int slices) {
+EShapeData EShape::createECone(const Material& mat, double R, double height, int slices) {
 	/* CSE 386 - todo  */
 	// I need to somehow cycle through this in a way that builds a cone piece by piece. I think that I need to loop through and 
 	// create a triangle to tack onto the correct place for each iteration until it is built.
@@ -101,14 +101,15 @@ EShapeData EShape::createECone(const Material &mat, double R, double height, int
 	dvec4 B(1, 0, 0, 1);
 	dvec4 C(1, 1, 0, 1);
 	result = EShape::createETriangle(mat, A, B, C);
-	for(int i = 0; i < slices; i++){
+	// for(int i = 0; i < slices; i++){
 		// find the correct place to place a triangle
 		// make sure base of cone is centered on origin and axis is aligned with y
 		// I need to move it to the right place by using rotation and transposition
-		result = EShape::createETriangle(mat, A, B, C); // create triangle while changing the appropriate attributes.
-	}
+		// result = EShape::createETriangle(mat, A, B, C); // create triangle while changing the appropriate attributes.
+		// maybe I could use something like this? - result.push_back(VertexData(V0, Y_AXIS, mat));
+		//}
 	return result;
-}
+} // I never quite found a way to exactly do this, I looked through slides and online examples but it never clicked for me
 
 /**
  * @fn	EShapeData EShape::createECube(const Material &mat, double width, double height, double depth)
